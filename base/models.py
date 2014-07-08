@@ -114,10 +114,11 @@ class Wpostmeta(models.Model):
 class Wcomment(models.Model):
 	wpost = models.ForeignKey(Wpost, default=0)
 	wcommentauthor = models.TextField()
-	wcommentauthoremai = models.CharField(max_length=100)
+	wcommentauthoremail = models.EmailField(max_length=100)
 	wcommentauthorurl = models.CharField(max_length=200)
 	wcommentauthorip = models.CharField(max_length=100)
 	wcommenttime = models.DateTimeField(default=datetime.now())
+	wcommenttimegmt = models.DateTimeField(default=datetime.now())
 	wcommentcontent = models.TextField()
 	wcommentkarma = models.IntegerField(default=0)
 	wcommentapproved = models.CharField(max_length=20, default='')
