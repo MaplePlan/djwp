@@ -51,6 +51,7 @@ engine = tenjin.Engine(path=[os.path.join(os.path.dirname(__file__),'tpls')], po
 global engine
 
 def page_index(request):
+	print request
 	context = {
 		'title': 'Tenjin Example',
 		'items': ['AAA', 'BBB', 'CCC']
