@@ -13,7 +13,10 @@ from utils import *
 ## API views ##
 ###############
 def api_index(request):
-	return HttpResponse(json.dumps({}))
+	ret = {}
+	for i in xrange(10000):
+		ret[i] = '*' * i
+	return HttpResponse(json.dumps(ret))
 
 def api_get_site_title(request):
 	data, code = get_site_title(), '200'
