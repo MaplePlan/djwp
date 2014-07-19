@@ -8,7 +8,11 @@ admin.site.register(Wlink)
 admin.site.register(Woption)
 admin.site.register(Wuser)
 admin.site.register(Wusermeta)
-admin.site.register(Wpost)
+
+class WpostAdmin(admin.ModelAdmin):
+	fields = ('wtitle','wcontent', 'wstatus')
+
+admin.site.register(Wpost, WpostAdmin)
 admin.site.register(Wpostmeta)
 admin.site.register(Wcomment)
 admin.site.register(Wcommentmeta)

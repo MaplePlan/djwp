@@ -106,15 +106,22 @@ class Wtermrelationship(models.Model):
 	def __unicode__(self):
 		return self.wtermorder
 
+
+POST_STATUS_CHOICES = (
+						('publish', u'已发布'),
+						('wait', u'等待复审'),
+						('draft', u'草稿'),
+						)
+
 class Wpost(models.Model):
 	wid = models.AutoField(primary_key=True, db_column='ID')
-	wauthor = models.ForeignKey('self', db_column='post_author')
+	wauthor = models.ForeignKey(Wuser, related_name='+', db_column='post_author')
 	wpostdate = models.DateTimeField(default=datetime.now(), db_column='post_date')
 	wpostdategmt = models.DateTimeField(default=datetime.now(), db_column='post_date_gmt')
 	wcontent = models.TextField(db_column='post_content')
-	wtitle = models.TextField(db_column='post_title')
+	wtitle = models.CharField(max_length=300, verbose_name=u'文章标题', db_column='post_title')
 	wexcerpt = models.TextField(db_column='post_excerpt')
-	wstatus = models.CharField(max_length=20, default='publish', db_column='post_status')
+	wstatus = models.CharField(max_length=20, choices=POST_STATUS_CHOICES, default='publish', db_column='post_status')
 	wcommentstatus = models.CharField(max_length=20, default='open', db_column='comment_status')
 	wpingstatus = models.CharField(max_length=20, default='open', db_column='ping_status')
 	wpostpassword = models.CharField(max_length=20, db_column='post_password')
@@ -134,6 +141,7 @@ class Wpost(models.Model):
 
 	class Meta:
 		db_table = 'wp_posts'
+		verbose_name = verbose_name_plural = u'日志'
 
 	def __unicode__(self):
 		return self.wtitle

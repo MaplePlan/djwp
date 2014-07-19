@@ -1,0 +1,7 @@
+timestamp: 1404962843.0
+args: 
+
+
+_extend=_buf.extend;_to_str=to_str;_escape=escape; _extend(('''<address>
+  copyright(c) 2010 kuwata-lab.com all rights reserved
+</address>''', ));
